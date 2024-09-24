@@ -1,5 +1,6 @@
 import classes from '../NewPost.module.css';
 import { useState } from 'react';
+import Modal from './Modal';
 
 
 function NewPost(props) {
