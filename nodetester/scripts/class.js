@@ -27,3 +27,19 @@ class User {
 
 const shiba = new User("Shiba", 25, "sshbk.mail.com");
 console.log(shiba.getDetails());
+
+
+class Student extends User {
+    constructor(name, age, email, studentId, course) {
+        super(name, age, email);
+        this.studentId = studentId;
+        this.course = course;
+    }
+
+    getDetails() {
+        return `${super.getDetails()}, Student ID - ${this.studentId}, Course - ${this.course}`;
+    }
+}
+const student1 = new Student("Alice", 22, "test.bn.com", "S12345", "Computer Science");
+console.log(student1.getDetails());
+
