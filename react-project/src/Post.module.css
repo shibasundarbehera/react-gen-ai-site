@@ -1,0 +1,18 @@
+.post{
+    margine : 1rem 0;
+    bottom:  0;
+    background-color: #96d1e2aa;
+    padding: 1rem;
+    border-radius: 0.5rem;  
+    background-color: rgb(234, 231, 237);
+    font-family: 'Courier New', Courier, monospace;
+}
+.author {
+    font-weight: bold;
+    color: #333;
+}
+.content {
+    margin-top: 0.5rem;
+    color: #555;
+    font-style: italic;
+}

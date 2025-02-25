@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Post from './components/Post'
+import PostList from './components/PostList'
 
 function App() {
  // const [count, setCount] = useState(0)
+ let listofbooks = [{author: "ssb", body: "react is awesome"}, {author: "ssb2", body: "react is awesome really"}];
 
   return (
     // <>
@@ -34,10 +36,10 @@ function App() {
     //     <p>Made with ❤️ by Shiba</p>
     //   </div>
     // </>
+   
     <main>
-      <Post author = "ssb" body ="react is awesome" />
-      <Post author = "ssb2" body ="react is awesome really " /> 
-      <Post /> 
+       
+      <PostList payload = {listofbooks} /> 
       <div className="footer">
         <p>Made with ❤️ by Shiba</p>
       </div>
