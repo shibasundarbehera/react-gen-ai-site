@@ -1,3 +1,5 @@
+import { useState  } from "react";
+
 const names =['Shiba', 'Luna', 'Max', 'Bella', 'Charlie'];
 
  
@@ -6,8 +8,12 @@ let Post =(props)=>{
     let author  = props.author || chosenName;
     let body = props.body || "This is a default post content.";
 
+     
+    const [postBody, setPostBody] = useState(body);
+
     const changeBodyHandler = (event) => {
         body = event.target.value;
+        setPostBody(body);
         console.log("Body changed to:", body);
     }
     
@@ -16,10 +22,13 @@ let Post =(props)=>{
       <h2> Post Title</h2>
       <p>Author: { author }</p>
       <p>Date: {new Date().toLocaleDateString()}</p>
-      <p> {body}</p>
+      <p>This is post body : {postBody}</p>
+      <p> This is body :{body}</p>
+      <p> 
+        <textarea className="comment-box" placeholder="Add a comment..." onChange={props.onChange}></textarea>
+      </p>
       <p>
-         
-        <textarea className="comment-box" placeholder="Add a comment..." onChange={changeBodyHandler}></textarea>
+      <textarea className="comment-box" placeholder="Add a comment..." onChange={changeBodyHandler}></textarea>
       </p>
     </div>
   );
