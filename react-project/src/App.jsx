@@ -4,47 +4,29 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Post from './components/Post'
 import PostList from './components/PostList'
+import MainHeader from './components/MainHeader' 
 
 function App() {
  // const [count, setCount] = useState(0)
  let listofbooks = [{author: "ssb", body: "react is awesome"}, {author: "ssb2", body: "react is awesome really"}];
+ const [modalIsVisible, setModalIsVisible] = useState(false);
+
+ function toggleModal() {
+  setModalIsVisible(!modalIsVisible);
+  console.log("Modal visibility changed to:", !modalIsVisible);
+}
+
 
   return (
-    // <>
-    //   <div>
-    //     <a href="https://vite.dev" target="_blank">
-    //       <img src={viteLogo} className="logo" alt="Vite logo" />
-    //     </a>
-    //     <a href="https://react.dev" target="_blank">
-    //       <img src={reactLogo} className="logo react" alt="React logo" />
-    //     </a>
-    //   </div>
-    //   <h1>Vite + React</h1>
-    //   <div className="card">
-    //     <button onClick={() => setCount((count) => count + 1)}>
-    //       count is {count}
-    //     </button>
-    //     <p>
-    //       Edit <code>src/App.jsx</code> and save to test HMR
-    //     </p>
-    //   </div>
-    //   <p className="read-the-docs">
-    //     Click on the Vite and React logos to learn more
-    //   </p>
-    //   <Post />
-    //   <div className="footer">
-    //     <p>Made with ❤️ by Shiba</p>
-    //   </div>
-    // </>
-   
-    <main>
-       
-      <PostList payload = {listofbooks} /> 
+<>
+    <MainHeader onCreatePost={toggleModal}/> 
+    <main> 
+      <PostList payload = {listofbooks} isPosting ={modalIsVisible} toggleModal={toggleModal}/> 
       <div className="footer">
         <p>Made with ❤️ by Shiba</p>
       </div>
     </main>
-
+    </>
   )
 }
 
