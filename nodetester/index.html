@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Tester</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Node Tester</h1>
+        <div class="form-group">
+            <label for="nodeAddress">Node Address:</label>
+            <input type="text" id="nodeAddress" placeholder="Enter node address">
+        </div>
+        <button id="connectButton">Connect</button>
+        <button id="disconnectButton">Disconnect</button>
+
+        <div class="status">
+            <p id="statusMessage">Status: Disconnected</p>
+        </div>
+
+        <div class="logs">
+            <h2>Logs</h2>
+            <ul id="logList"></ul>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            const socket = io('http://localhost:3000');
+
+            $('#connectButton').click(function() {
+                const nodeAddress = $('#nodeAddress').val();
+                if (nodeAddress) {
+                    socket.emit('connectNode', { address: nodeAddress });
+                } else {
+                    alert('Please enter a node address.');
+                }
+            });
+
+            $('#disconnectButton').click(function() {
+                socket.emit('disconnectNode');
+            });
+
+            socket.on('statusUpdate', function(data) {
+                $('#statusMessage').text(`Status: ${data.status}`);
+            });
+
+            socket.on('logMessage', function(data) {
+                $('#logList').append(`<li>${data.message}</li>`);
+            });
+        });
+    </script>
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #218838;
+    }
+    .status, .logs {
+        margin-top: 20px;
+    }
+    .logs ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .logs li {
+        background: #f8f9fa;
+        padding: 10px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+    }
+    #statusMessage {
+        font-weight: bold;
+    }
+</style>
+</html>

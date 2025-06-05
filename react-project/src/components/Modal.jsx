@@ -1,6 +1,6 @@
 import classes from "../Modal.module.css";
 import { useNavigate } from "react-router-dom";
-
+import { Form } from 'react-router-dom';
 
  const Modal = (props) => {
   const navigate = useNavigate();
@@ -12,13 +12,13 @@ import { useNavigate } from "react-router-dom";
     <>
       <div className={classes.backdrop} onClick={props.onClose}></div>
       <div className={classes.modal}>
-        <form className="form" onSubmit={props.onSubmit}>
+        <Form className="form" onSubmit={props.onSubmit}>
           {props.children}
           <div className="actions">
             <button type="submit">Submit</button>
-            <button type="button" onClick={props.onClose}>Cancel</button>
+            <button type="button" onClick={closeHandler}>Cancel</button>
           </div>
-        </form>
+        </Form>
       </div>
     </>
   );

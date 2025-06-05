@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import '../App.css'
@@ -29,3 +29,15 @@ function Posts() {
 }
 
 export default Posts;
+
+export function loader() {
+  // Simulate fetching posts from an API
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        { id: 1, author: 'John Doe', body: 'This is the first post.' },
+        { id: 2, author: 'Jane Smith', body: 'This is the second post.' },
+      ]);
+    }, 500);
+  });
+}

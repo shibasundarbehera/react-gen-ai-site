@@ -1,12 +1,13 @@
-import classes from '../NewPost.module.css';
-import { useState } from 'react';
+import classes from '../NewPost.module.css'; 
 import Modal from './Modal';
+import { Form } from 'react-router-dom';
 
 
 function NewPost(props) {
   
   return (
-    <form className={classes.form} onSubmit={props.onSubmit}>
+    <Modal>
+    <Form className={classes.form} onSubmit={props.onSubmit}>
  
    <div className={classes.newPost}>
       <h2>Create a New Post</h2>
@@ -19,9 +20,10 @@ function NewPost(props) {
         <input type="text" id="name" required />
       </p>
       </div>
-      </form>
-    
+      </Form>
+      </Modal>
   );
 }
 
 export default NewPost;
+
