@@ -44,6 +44,8 @@ const users = [
     { name: "Carol", role: "admin", department: "IT" },
     { name: "Dave", role: "user", department: "Marketing" },
     { name: "Eve", role: "admin", department: "IT" }
+    { name: "Frank", role: "user", department: "HR" }
+    { name: "Grace", role: "user", department: "Finance" }
   ];
 
   // group by role or department based on your requirement and pass the key accordingly in parenthesis
